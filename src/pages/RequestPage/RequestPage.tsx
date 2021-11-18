@@ -1,35 +1,14 @@
 import React, { useEffect, useState } from "react";
-import styled from "styled-components";
 import Navigation from "../../components/Navigation/Navigation";
 import { RequestApiType } from "../../types/Types";
 import RequestMainContent from "../../components/RequestMainContent/RequestMainContent";
 import FilterSelect from "../../components/FilterSelect/FilterSelect";
-
-const RequestContainer = styled.section`
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-`;
-
-const RequestTopContent = styled.div`
-  display: flex;
-  flex-direction: column;
-  margin: 40px 155px;
-  margin-bottom: 32px;
-`;
-
-const ComingRequest = styled.span`
-  font-size: 20px;
-  font-weight: 600;
-  height: 32px;
-  display: flex;
-  align-items: center;
-`;
-
-const ComingRequestDetail = styled.span`
-  font-size: 16px;
-  color: #323d45;
-`;
+import {
+  RequestContainer,
+  RequestTopContent,
+  ComingRequest,
+  ComingRequestDetail,
+} from "./styles";
 
 const RequestPage: React.FC = () => {
   const [isProcessClicked, setIsProcessClicked] = useState(false);
