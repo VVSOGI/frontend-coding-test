@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Navigation from "../../components/Navigation/Navigation";
-import { RequestApiType } from "../../types/Types";
+import { RequestApiType, DivideClickItemType } from "../../types/Types";
 import RequestMainContent from "../../components/RequestMainContent/RequestMainContent";
 import FilterSelect from "../../components/FilterSelect/FilterSelect";
 import {
@@ -13,8 +13,13 @@ import {
 const RequestPage: React.FC = () => {
   const [isProcessClicked, setIsProcessClicked] = useState(false);
   const [isIngredientClicked, setIsIngredientClicked] = useState(false);
-  const [clickedId, setClickedId] = useState<number[]>([]);
+  const [clickedItem, setClickedItem] = useState<string[]>([]);
+  const [divideClickItem, setDivideClickItem] = useState<DivideClickItemType>({
+    processMethod: [],
+    ingredient: [],
+  });
   const [requestItem, setRequestItem] = useState<RequestApiType[]>([]);
+  const [changeItem, setChangeItem] = useState<RequestApiType[]>([]);
 
   const handleProcessClick = () => {
     setIsProcessClicked(!isProcessClicked);
@@ -24,22 +29,57 @@ const RequestPage: React.FC = () => {
     setIsIngredientClicked(!isIngredientClicked);
   };
 
-  const handleClickId = (id: number) => {
-    let isClicked = clickedId.filter((item) => item === id).length > 0;
+  const handleClickItem = (selectItem: string, itemType: string) => {
+    let isClicked =
+      clickedItem.filter((item) => item === selectItem).length > 0;
+
     if (isClicked) {
-      const filterSlice = clickedId.slice().filter((item) => item !== id);
-      setClickedId(filterSlice);
+      const filterSlice = clickedItem // 클릭을 두 번 했을 경우에 해당 아이템 스테이트에서 제거.
+        .slice()
+        .filter((item) => item !== selectItem);
+      handleDivideFilter(selectItem, itemType);
+      setClickedItem(filterSlice);
     } else {
-      const clickedSlice = clickedId.slice();
-      clickedSlice.push(id);
-      setClickedId(clickedSlice);
+      const clickedSlice = clickedItem.slice(); // 클릭을 했을 때 스테이트로 상태 관리.
+      clickedSlice.push(selectItem);
+      handleDivideItem(selectItem, itemType);
+      setClickedItem(clickedSlice);
     }
   };
 
   const handleRemoveIdAll = () => {
-    setClickedId([]);
+    setClickedItem([]);
     setIsProcessClicked(false);
     setIsIngredientClicked(false);
+    setDivideClickItem({ processMethod: [], ingredient: [] });
+  };
+
+  const handleDivideItem = (selectItem: string, itemType: string) => {
+    if (itemType === "processMethod") {
+      let divideItemSlice = { ...divideClickItem };
+      divideItemSlice.processMethod.push(selectItem);
+      setDivideClickItem(divideItemSlice);
+    } else {
+      let divideItemSlice = { ...divideClickItem };
+      divideItemSlice.ingredient.push(selectItem);
+      setDivideClickItem(divideItemSlice);
+    }
+  };
+
+  const handleDivideFilter = (selectItem: string, itemType: string) => {
+    if (itemType === "processMethod") {
+      let divideItemSlice = { ...divideClickItem };
+      divideItemSlice.processMethod = divideItemSlice.processMethod.filter(
+        (item) => item !== selectItem
+      );
+      setDivideClickItem(divideItemSlice);
+    } else {
+      let divideItemSlice = { ...divideClickItem };
+      divideItemSlice.ingredient = divideItemSlice.ingredient.filter(
+        (item) => item !== selectItem
+      );
+      setDivideClickItem(divideItemSlice);
+    }
   };
 
   const handleServerData = async () => {
@@ -68,12 +108,12 @@ const RequestPage: React.FC = () => {
         </ComingRequestDetail>
         <FilterSelect
           handleProcessClick={handleProcessClick}
-          handleClickId={handleClickId}
+          handleClickItem={handleClickItem}
           handleIngredientClick={handleIngredientClick}
           handleRemoveIdAll={handleRemoveIdAll}
           isProcessClicked={isProcessClicked}
           isIngredientClicked={isIngredientClicked}
-          clickedId={clickedId}
+          clickedItem={clickedItem} //redux
         />
       </RequestTopContent>
       <RequestMainContent requestItem={requestItem} />

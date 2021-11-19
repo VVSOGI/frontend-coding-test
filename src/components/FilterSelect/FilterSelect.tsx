@@ -18,17 +18,15 @@ import {
   FilterReset,
   ResetIcon,
   ResetText,
-  ConsultingSwitch,
-  ConsultingSwitchBack,
-  ConsultingSwitchCircle,
   ConsultingText,
 } from "./styles";
+import ClickSwitch from "../ClickSwitch/ClickSwitch";
 
 const FilterSelect: React.FC<FilterSelectZoneType> = ({
   handleProcessClick,
   isProcessClicked,
-  clickedId,
-  handleClickId,
+  clickedItem,
+  handleClickItem,
   isIngredientClicked,
   handleIngredientClick,
   handleRemoveIdAll,
@@ -53,8 +51,8 @@ const FilterSelect: React.FC<FilterSelectZoneType> = ({
                     id={item.id}
                     title={item.title}
                     type={item.type}
-                    isClicked={clickedId}
-                    handleClickId={handleClickId}
+                    isClicked={clickedItem}
+                    handleClickItem={handleClickItem}
                   />
                 );
               })}
@@ -80,8 +78,8 @@ const FilterSelect: React.FC<FilterSelectZoneType> = ({
                     id={item.id}
                     title={item.title}
                     type={item.type}
-                    isClicked={clickedId}
-                    handleClickId={handleClickId}
+                    isClicked={clickedItem}
+                    handleClickItem={handleClickItem}
                   />
                 );
               })}
@@ -90,17 +88,14 @@ const FilterSelect: React.FC<FilterSelectZoneType> = ({
         </IngredientButton>
         <FilterReset
           onClick={handleRemoveIdAll}
-          isFilterOn={clickedId.length > 0}
+          isFilterOn={clickedItem.length > 0}
         >
           <ResetIcon />
           <ResetText>필터링 리셋</ResetText>
         </FilterReset>
       </FilterSelectLeft>
       <FilterSelectRight>
-        <ConsultingSwitch>
-          <ConsultingSwitchBack />
-          <ConsultingSwitchCircle />
-        </ConsultingSwitch>
+        <ClickSwitch />
         <ConsultingText>상담 중인 요청만 보기</ConsultingText>
       </FilterSelectRight>
     </FilterSelectZone>

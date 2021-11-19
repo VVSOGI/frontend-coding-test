@@ -2,8 +2,8 @@ export interface ProcessMethodAndIngredient {
   id: number;
   title: string;
   type: string;
-  isClicked?: number[];
-  handleClickId?(id: number): void;
+  isClicked?: string[];
+  handleClickItem?(selectItem: string, itemType: string): void;
 }
 
 export interface FilterOnOff {
@@ -47,9 +47,22 @@ export interface RequestMainCardType {
 export interface FilterSelectZoneType {
   handleProcessClick: React.MouseEventHandler<HTMLDivElement>;
   isProcessClicked: boolean;
-  clickedId: number[];
-  handleClickId?(id: number): void;
+  clickedItem: string[];
+  handleClickItem?(selectItem: string, itemType: string): void;
   isIngredientClicked: boolean;
   handleIngredientClick: React.MouseEventHandler<HTMLDivElement>;
   handleRemoveIdAll: React.MouseEventHandler<HTMLDivElement>;
+}
+
+export interface SwitchOnOffType {
+  switchOnOff: boolean;
+}
+
+export interface isConsultingType {
+  haveConsulting: string;
+}
+
+export interface DivideClickItemType {
+  processMethod: string[];
+  ingredient: string[];
 }

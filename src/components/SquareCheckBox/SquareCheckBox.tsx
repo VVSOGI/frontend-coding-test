@@ -9,10 +9,11 @@ import {
 
 const SquareCheckBox: React.FC<ProcessMethodAndIngredient> = (props) => {
   const [isClicked, setIsClicked] = useState(false);
-
   const handleClick = () => {
     setIsClicked(!isClicked);
-    if (props.handleClickId) props.handleClickId(props.id);
+    if (props.handleClickItem) {
+      props.handleClickItem(props.title, props.type);
+    }
   };
 
   useEffect(() => {
@@ -20,11 +21,12 @@ const SquareCheckBox: React.FC<ProcessMethodAndIngredient> = (props) => {
       ? props.isClicked.slice().sort()
       : null;
     const clickThisItem = deliverIdArr?.filter(
-      (item) => item === props.id
+      (item) => item === props.title
     ).length;
     if (clickThisItem) {
       setIsClicked(!isClicked);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
