@@ -52,6 +52,8 @@ export interface FilterSelectZoneType {
   isIngredientClicked: boolean;
   handleIngredientClick: React.MouseEventHandler<HTMLDivElement>;
   handleRemoveIdAll: React.MouseEventHandler<HTMLDivElement>;
+  handleConsulting(isSwitchOn?: boolean): void;
+  isConsulting: boolean;
 }
 
 export interface SwitchOnOffType {
@@ -65,4 +67,27 @@ export interface isConsultingType {
 export interface DivideClickItemType {
   processMethod: string[];
   ingredient: string[];
+}
+
+export interface ConsultingSwitchPropsType {
+  handleConsulting(isSwitchOn?: boolean): void;
+  isConsulting: boolean;
+}
+
+export interface hiddenComponentOutType {
+  handleHiddenComponent(): void;
+  hiddenComponentOut: boolean;
+}
+
+export interface hiddenComponentOutPropsCSSType {
+  hiddenComponentOut: string;
+}
+
+export interface NavigationPropsType {
+  handleHiddenComponent(): void;
+  hiddenComponentOut: boolean;
+}
+
+export interface NavigationPropsCSSType {
+  barClicked: string;
 }

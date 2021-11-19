@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from "react";
 import Navigation from "../../components/Navigation/Navigation";
 import { RequestApiType, DivideClickItemType } from "../../types/Types";
@@ -9,6 +10,7 @@ import {
   ComingRequest,
   ComingRequestDetail,
 } from "./styles";
+import NavClickHiddenComponent from "../../components/NavClickHiddenComponent/NavClickHiddenComponent";
 
 const RequestPage: React.FC = () => {
   const [isProcessClicked, setIsProcessClicked] = useState(false);
@@ -19,7 +21,9 @@ const RequestPage: React.FC = () => {
     ingredient: [],
   });
   const [requestItem, setRequestItem] = useState<RequestApiType[]>([]);
-  const [changeItem, setChangeItem] = useState<RequestApiType[]>([]);
+  const [filteredItem, setFilteredItem] = useState<RequestApiType[]>([]);
+  const [isConsulting, setIsConsulting] = useState<boolean>(false);
+  const [hiddenComponentOut, setHiddenComponentOut] = useState<boolean>(false);
 
   const handleProcessClick = () => {
     setIsProcessClicked(!isProcessClicked);
@@ -32,7 +36,6 @@ const RequestPage: React.FC = () => {
   const handleClickItem = (selectItem: string, itemType: string) => {
     let isClicked =
       clickedItem.filter((item) => item === selectItem).length > 0;
-
     if (isClicked) {
       const filterSlice = clickedItem // 클릭을 두 번 했을 경우에 해당 아이템 스테이트에서 제거.
         .slice()
@@ -42,7 +45,7 @@ const RequestPage: React.FC = () => {
     } else {
       const clickedSlice = clickedItem.slice(); // 클릭을 했을 때 스테이트로 상태 관리.
       clickedSlice.push(selectItem);
-      handleDivideItem(selectItem, itemType);
+      handleDivideItemPush(selectItem, itemType);
       setClickedItem(clickedSlice);
     }
   };
@@ -51,10 +54,11 @@ const RequestPage: React.FC = () => {
     setClickedItem([]);
     setIsProcessClicked(false);
     setIsIngredientClicked(false);
+    handleConsulting(false);
     setDivideClickItem({ processMethod: [], ingredient: [] });
   };
 
-  const handleDivideItem = (selectItem: string, itemType: string) => {
+  const handleDivideItemPush = (selectItem: string, itemType: string) => {
     if (itemType === "processMethod") {
       let divideItemSlice = { ...divideClickItem };
       divideItemSlice.processMethod.push(selectItem);
@@ -82,6 +86,52 @@ const RequestPage: React.FC = () => {
     }
   };
 
+  const handleChangeFilter = () => {
+    const firstFilterItem = requestItem.filter((item) => {
+      let count = 0;
+      for (let i = 0; i < item.method.length; i++) {
+        if (divideClickItem.processMethod.indexOf(item.method[i]) !== -1) {
+          count++;
+        }
+      }
+      return count >= divideClickItem.processMethod.length ? true : false;
+    });
+    const secondFilterItem = firstFilterItem.filter((item) => {
+      let count = 0;
+      for (let i = 0; i < item.material.length; i++) {
+        if (divideClickItem.ingredient.indexOf(item.material[i]) !== -1) {
+          count++;
+        }
+      }
+      return count >= divideClickItem.ingredient.length ? true : false;
+    });
+
+    setFilteredItem(secondFilterItem);
+  };
+
+  const handleConsulting = (isSwitchOn: boolean) => {
+    if (!isSwitchOn) {
+      setIsConsulting(false);
+    } else {
+      setIsConsulting(!isConsulting);
+    }
+  };
+
+  const handleConsultingChangeCard = () => {
+    if (isConsulting) {
+      let checkDuringConsulting = filteredItem.filter(
+        (item) => item.status === "상담중"
+      );
+      setFilteredItem(checkDuringConsulting);
+    } else {
+      handleChangeFilter();
+    }
+  };
+
+  const handleHiddenComponent = () => {
+    setHiddenComponentOut(!hiddenComponentOut);
+  };
+
   const handleServerData = async () => {
     const response = await fetch("http://localhost:3001/requests");
     if (response.status === 200) {
@@ -98,9 +148,18 @@ const RequestPage: React.FC = () => {
     });
   }, []);
 
+  useEffect(() => {
+    handleChangeFilter();
+  }, [clickedItem, requestItem]);
+
+  useEffect(handleConsultingChangeCard, [isConsulting]);
+
   return (
     <RequestContainer>
-      <Navigation />
+      <Navigation
+        handleHiddenComponent={handleHiddenComponent}
+        hiddenComponentOut={hiddenComponentOut}
+      />
       <RequestTopContent>
         <ComingRequest>들어온 요청</ComingRequest>
         <ComingRequestDetail>
@@ -114,9 +173,15 @@ const RequestPage: React.FC = () => {
           isProcessClicked={isProcessClicked}
           isIngredientClicked={isIngredientClicked}
           clickedItem={clickedItem} //redux
+          handleConsulting={handleConsulting}
+          isConsulting={isConsulting}
         />
       </RequestTopContent>
-      <RequestMainContent requestItem={requestItem} />
+      <RequestMainContent requestItem={filteredItem} />
+      <NavClickHiddenComponent
+        handleHiddenComponent={handleHiddenComponent}
+        hiddenComponentOut={hiddenComponentOut}
+      />
     </RequestContainer>
   );
 };

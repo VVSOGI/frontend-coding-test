@@ -31,6 +31,10 @@ export const SquareCheckIcon = styled(checkIcon)`
   color: #ffffff;
   left: -25%;
   top: -25%;
+  @media only screen and (max-width: 480px) {
+    top: -30%;
+    width: 148% !important;
+  }
 `;
 
 export const CheckBoxText = styled.div``;

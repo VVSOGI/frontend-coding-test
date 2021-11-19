@@ -7,11 +7,18 @@ export const FilterSelectZone = styled.div`
   display: flex;
   margin-top: 32px;
   justify-content: space-between;
+
+  @media only screen and (max-width: 480px) {
+    flex-direction: column;
+  }
 `;
 
 export const FilterSelectLeft = styled.div`
   display: flex;
   font-size: 12px;
+  @media only screen and (max-width: 480px) {
+    margin-bottom: 20px;
+  }
 `;
 
 export const ProcessingMethodButton = styled.div`

@@ -7,11 +7,17 @@ import {
   NavRightCompanyIcons,
   NavRightCompanyText,
   NavRightLogout,
+  NavMenuIcon,
 } from "./styles";
+import { NavigationPropsType } from "../../types/Types";
 
-const Navigation: React.FC = () => {
+const Navigation: React.FC<NavigationPropsType> = ({
+  handleHiddenComponent,
+  hiddenComponentOut,
+}) => {
   return (
-    <NavigationBar>
+    <NavigationBar barClicked={hiddenComponentOut ? "1" : "0"}>
+      <NavMenuIcon onClick={handleHiddenComponent} />
       <NavLeftCompanyLogo>
         <span>CAPA</span>
         파트너스

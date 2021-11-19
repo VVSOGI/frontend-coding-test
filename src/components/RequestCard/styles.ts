@@ -36,6 +36,9 @@ export const RequestCardConsulting = styled.div<isConsultingType>`
 export const RequestCardClient = styled.span`
   margin-bottom: 24px;
   font-size: 14px;
+  @media only screen and (max-width: 480px) {
+    margin-bottom: 16px;
+  }
 `;
 
 export const RequestCardDelieveryDate = styled.span`
@@ -68,7 +71,7 @@ export const RequestCardBase = styled.div`
 
 export const RequestCardBaseHave = styled.div`
   font-size: 14px;
-  font-weight: 800;
+  font-weight: 600;
 `;
 
 export const RequestCardButtonBox = styled.div`
@@ -93,4 +96,13 @@ export const RequestCardButton = styled.div<ChatType>`
     return props.chatType ? "#2196f3" : "#fff";
   }};
   cursor: pointer;
+
+  @media only screen and (max-width: 720px) {
+    padding: 4px 12px;
+    font-size: 12px;
+  }
+  @media only screen and (max-width: 720px) {
+    padding: 6px 12px;
+    font-size: 12px;
+  }
 `;

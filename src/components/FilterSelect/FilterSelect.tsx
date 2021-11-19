@@ -30,6 +30,8 @@ const FilterSelect: React.FC<FilterSelectZoneType> = ({
   isIngredientClicked,
   handleIngredientClick,
   handleRemoveIdAll,
+  handleConsulting,
+  isConsulting,
 }) => {
   return (
     <FilterSelectZone>
@@ -88,14 +90,17 @@ const FilterSelect: React.FC<FilterSelectZoneType> = ({
         </IngredientButton>
         <FilterReset
           onClick={handleRemoveIdAll}
-          isFilterOn={clickedItem.length > 0}
+          isFilterOn={clickedItem.length > 0 || isConsulting}
         >
           <ResetIcon />
           <ResetText>필터링 리셋</ResetText>
         </FilterReset>
       </FilterSelectLeft>
       <FilterSelectRight>
-        <ClickSwitch />
+        <ClickSwitch
+          handleConsulting={handleConsulting}
+          isConsulting={isConsulting}
+        />
         <ConsultingText>상담 중인 요청만 보기</ConsultingText>
       </FilterSelectRight>
     </FilterSelectZone>

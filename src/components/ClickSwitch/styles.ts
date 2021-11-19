@@ -32,5 +32,8 @@ export const ConsultingSwitchCircle = styled.div<SwitchOnOffType>`
   background-color: ${(props) => {
     return props.switchOnOff ? "#2196F3" : "#f5f5f5";
   }};
-  box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.12), 0px 2px 2px rgba(0, 0, 0, 0.24); ;
+  box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.12), 0px 2px 2px rgba(0, 0, 0, 0.24);
+  @media only screen and (max-width: 480px) {
+    z-index: 9;
+  }
 `;
