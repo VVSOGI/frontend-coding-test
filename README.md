@@ -44,8 +44,8 @@ RequestPage에서 컴포넌트들을 통해 전달하는 props의 depth가 깊�
 
 ## 화면 직접 보기
 
-### 1. 원하는 폴더에 클론해서 폴더 가져가기.
-### 2. 터미널에서 npm i 실행
-### 3. 터미널에서 npm install json-server
-### 4. src에 server폴더에 들어간 후 터미널에 json-server --watch db.json --port 3001
-### 5. npm start
+1. 원하는 폴더에 클론해서 폴더 가져가기.
+2. 터미널에서 npm i 실행
+3. 터미널에서 npm install json-server
+4. src에 server폴더에 들어간 후 터미널에 json-server --watch db.json --port 3001
+5. npm start
