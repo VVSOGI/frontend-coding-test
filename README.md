@@ -1,8 +1,12 @@
 # 2021 11 20 프론트엔드 김우석 과제 완료.
 
-<img width="1440" alt="스크린샷 2021-11-20 오후 4 49 01" src="https://user-images.githubusercontent.com/76682009/142719348-29b2906c-a379-4dcc-aada-ef14e4c0d4b6.png">
+<img width="720" alt="스크린샷 2021-11-20 오후 4 48 45" src="https://user-images.githubusercontent.com/76682009/142719352-e5611cf0-60bf-488b-9aba-9df10de554b4.png">
 
-<img width="1440" alt="스크린샷 2021-11-20 오후 4 48 45" src="https://user-images.githubusercontent.com/76682009/142719352-e5611cf0-60bf-488b-9aba-9df10de554b4.png">
+<img width="720" alt="스크린샷 2021-11-20 오후 4 49 01" src="https://user-images.githubusercontent.com/76682009/142719348-29b2906c-a379-4dcc-aada-ef14e4c0d4b6.png">
+
+<img width="359" alt="스크린샷 2021-11-20 오후 5 11 13" src="https://user-images.githubusercontent.com/76682009/142719439-c1746a0f-8289-4407-9791-43fbedb127a9.png">
+
+<img width="360" alt="스크린샷 2021-11-20 오후 5 11 28" src="https://user-images.githubusercontent.com/76682009/142719441-7c6ace8f-bbe5-4ffa-989f-1014deacf2bc.png">
 
 src 폴더에 화면을 구성하는 데 필요한 폴더 components, data, pages, server, types 총 5개가 있습니다. 주어진 과제는 원하는 요청서를 찾을 수 있는 요청 페이지를 구성하는 것 이었습니다. 해당 목적에 맞춰서 우선적으로 페이지 폴더에 RequestPage라는 폴더와 파일을 생성했습니다.
 
