@@ -15,6 +15,7 @@ const SquareCheckBox: React.FC<ProcessMethodAndIngredient> = (props) => {
       props.handleClickItem(props.title, props.type);
     }
   };
+  // CSS를 변경하기 위한 함수, props로 들어온 함수에 필요한 정보 끌어올리는 이벤트 함수.
 
   useEffect(() => {
     const deliverIdArr = props.isClicked

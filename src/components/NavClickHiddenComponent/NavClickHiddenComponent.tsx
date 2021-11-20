@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { hiddenComponentOutType } from "../../types/Types";
 import {
   HiddenTotalContainer,
@@ -14,8 +14,29 @@ const NavClickHiddenComponent: React.FC<hiddenComponentOutType> = ({
   handleHiddenComponent,
   hiddenComponentOut,
 }) => {
+  const [controllTime, setControllTime] = useState(false);
+  const indexRef = useRef<HTMLInputElement>(null);
+
+  useEffect(() => {
+    setTimeout(() => {
+      setControllTime(true);
+    }, 500);
+    if (!hiddenComponentOut && !controllTime) {
+      indexRef.current!.style.zIndex = "-1";
+    } else if (!hiddenComponentOut && controllTime) {
+      setTimeout(() => {
+        indexRef.current!.style.zIndex = "-1";
+      }, 500);
+    } else if (hiddenComponentOut) {
+      indexRef.current!.style.zIndex = "10";
+    }
+  }, [hiddenComponentOut]);
+
   return (
-    <HiddenTotalContainer hiddenComponentOut={hiddenComponentOut ? "1" : "0"}>
+    <HiddenTotalContainer
+      ref={indexRef}
+      hiddenComponentOut={hiddenComponentOut ? "1" : "0"}
+    >
       <HiddenContainer hiddenComponentOut={hiddenComponentOut ? "1" : "0"}>
         <HiddenHeader>
           <HiddenHeaderTitle>
@@ -29,7 +50,9 @@ const NavClickHiddenComponent: React.FC<hiddenComponentOutType> = ({
         <HiddenContent>로그아웃</HiddenContent>
       </HiddenContainer>
       <HiddenBackground
-        onClick={handleHiddenComponent}
+        onClick={() => {
+          handleHiddenComponent(false);
+        }}
         hiddenComponentOut={hiddenComponentOut ? "1" : "0"}
       />
     </HiddenTotalContainer>

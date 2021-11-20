@@ -75,7 +75,7 @@ export interface ConsultingSwitchPropsType {
 }
 
 export interface hiddenComponentOutType {
-  handleHiddenComponent(): void;
+  handleHiddenComponent(switching: boolean): void;
   hiddenComponentOut: boolean;
 }
 
@@ -84,7 +84,7 @@ export interface hiddenComponentOutPropsCSSType {
 }
 
 export interface NavigationPropsType {
-  handleHiddenComponent(): void;
+  handleHiddenComponent(switching: boolean): void;
   hiddenComponentOut: boolean;
 }
 

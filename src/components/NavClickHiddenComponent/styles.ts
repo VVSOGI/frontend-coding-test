@@ -8,9 +8,7 @@ export const HiddenTotalContainer = styled.div<hiddenComponentOutPropsCSSType>`
     width: 100%;
     height: 100%;
     position: absolute;
-    z-index: ${(props) => {
-      return props.hiddenComponentOut === "1" ? "10" : "5";
-    }};
+    z-index: -1;
     display: block;
   }
 `;
@@ -31,7 +29,7 @@ export const HiddenContainer = styled.div<hiddenComponentOutPropsCSSType>`
       : "translateX(-100%)";
   }};
   position: absolute;
-  width: 280px;
+  width: 77.8%;
   height: 100%;
   background-color: #fff;
   transition: 0.5s;
@@ -59,11 +57,11 @@ export const HiddenHeaderTitle = styled.span`
 `;
 
 export const HiddenContent = styled.span`
-  padding: 12px 32px;
-  /* padding-bottom: 12px; */
+  margin: 12px 32px;
   display: flex;
   align-items: center;
   font-size: 14px;
+  cursor: pointer;
 `;
 
 export const HiddenPartnerProcessIcon = styled(BusinessIcon)`

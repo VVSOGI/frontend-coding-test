@@ -23,8 +23,8 @@ export const SquareCheckBoxThing = styled.div<ClickProps>`
 `;
 
 export const SquareCheckIcon = styled(checkIcon)`
-  width: 150% !important;
-  height: 150% !important;
+  width: 148% !important;
+  height: 148% !important;
   // material-ui의 기본 설정을 생략해야할 경우이기에 !important를 사용했습니다.
 
   position: absolute;

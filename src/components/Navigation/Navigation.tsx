@@ -17,7 +17,11 @@ const Navigation: React.FC<NavigationPropsType> = ({
 }) => {
   return (
     <NavigationBar barClicked={hiddenComponentOut ? "1" : "0"}>
-      <NavMenuIcon onClick={handleHiddenComponent} />
+      <NavMenuIcon
+        onClick={() => {
+          handleHiddenComponent(true);
+        }}
+      />
       <NavLeftCompanyLogo>
         <span>CAPA</span>
         파트너스

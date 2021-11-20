@@ -1,4 +1,5 @@
 import { ProcessMethodAndIngredient } from "../types/Types";
+// 임시로 만든 더미 데이터.
 
 export const processingMethod: ProcessMethodAndIngredient[] = [
   {
@@ -12,6 +13,7 @@ export const processingMethod: ProcessMethodAndIngredient[] = [
     type: "processMethod",
   },
 ];
+
 export const ingredient: ProcessMethodAndIngredient[] = [
   {
     id: 3,

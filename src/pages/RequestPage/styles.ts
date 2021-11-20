@@ -7,6 +7,7 @@ export const RequestContainer = styled.section`
   position: relative;
   @media only screen and (max-width: 480px) {
     height: 100%;
+    min-height: 100vh;
   }
 `;
 
@@ -15,7 +16,7 @@ export const RequestTopContent = styled.div`
   flex-direction: column;
   margin: 40px 155px;
   margin-bottom: 32px;
-  z-index: 5;
+  /* z-index: 6; */
   @media only screen and (max-width: 1024px) {
     margin: 40px 100px;
   }
