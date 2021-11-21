@@ -6,7 +6,7 @@
 
 <img width="720" alt="스크린샷 2021-11-20 오후 4 49 01" src="https://user-images.githubusercontent.com/76682009/142719348-29b2906c-a379-4dcc-aada-ef14e4c0d4b6.png">
 
-<img width="359" alt="스크린샷 2021-11-20 오후 5 11 13" src="https://user-images.githubusercontent.com/76682009/142719439-c1746a0f-8289-4407-9791-43fbedb127a9.png"> \n
+<img width="359" alt="스크린샷 2021-11-20 오후 5 11 13" src="https://user-images.githubusercontent.com/76682009/142719439-c1746a0f-8289-4407-9791-43fbedb127a9.png">      
 
 <img width="360" alt="스크린샷 2021-11-20 오후 5 11 28" src="https://user-images.githubusercontent.com/76682009/142719441-7c6ace8f-bbe5-4ffa-989f-1014deacf2bc.png">
 
